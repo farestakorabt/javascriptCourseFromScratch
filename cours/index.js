@@ -144,8 +144,32 @@ form.addEventListener("submit", (e) => {
   // console.log(cgv.checked);
 
   if (cgv.checked) {
-    
-  }else{
-    alert('Veuillez accepter les CGV !')
+    document.querySelector("form > div").innerHTML = `
+    <h3>Pseudo : ${pseudo} </h3>
+    <h4>Langage préféré : ${language} </h4>
+    `;
+  } else {
+    alert("Veuillez accepter les CGV !");
   }
+});
+
+// -------------------------------------------------------------------
+
+// Load event
+
+window.addEventListener("load", () => {
+  // console.log("Document chargé");
+});
+
+// -------------------------------------------------------------------
+
+// froEach event
+
+const boxes = document.querySelectorAll(".box");
+console.log("boxes:", boxes);
+
+boxes.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    e.target.style.transform = "scale(0.7)";
+  });
 });
