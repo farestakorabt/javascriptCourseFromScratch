@@ -121,8 +121,6 @@ window.addEventListener("scroll", () => {
 const inputName = document.querySelector("input[type='text']");
 const inputSelect = document.querySelector("select");
 const form = document.querySelector("form");
-// console.log('form:', form)
-// console.log("inputSelect:", inputSelect);
 
 let pseudo = "";
 let language = "";
@@ -138,10 +136,8 @@ inputSelect.addEventListener("input", (e) => {
 });
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  e.preventDefault(); // cette fonction permet de stopper la propagation de l'evenement
   console.log("yes !!!");
-
-  // console.log(cgv.checked);
 
   if (cgv.checked) {
     document.querySelector("form > div").innerHTML = `
@@ -166,10 +162,143 @@ window.addEventListener("load", () => {
 // froEach event
 
 const boxes = document.querySelectorAll(".box");
-console.log("boxes:", boxes);
+// console.log("boxes:", boxes);
 
 boxes.forEach((box) => {
   box.addEventListener("click", (e) => {
     e.target.style.transform = "scale(0.7)";
   });
+});
+
+// -------------------------------------------------------------------
+
+// addEventListener vs onclick
+
+// document.body.onclick = () => {
+//   console.log("click ");
+// };
+
+// bubbling => declencher à la fin (de base l'eventlistener est paramétré enn mode bubbling)
+// document.body.addEventListener(
+//   "click",
+//   () => {
+//     console.log("click 1 !");
+//   }
+//   // false (pas la peine de mettre le false, car il est par default)
+// );
+
+// // usecapture
+// document.body.addEventListener(
+//   "click",
+//   () => {
+//     console.log("click 2 !");
+//   },
+//   true
+// );
+
+// ----------------------------------------------------------------------------------
+// stop propagation
+
+questionContain.addEventListener("click", (e) => {
+  // alert("test! ");
+  e.stopPropagation();
+});
+
+// remove addEvenetListener
+
+// ----------------------------------------------------------------------------------
+
+//BOM
+
+// console.log(window.innerHeight);
+// console.log(window.scrollY);
+
+// window.open("http://google.fr", "cours js", "height=600", "with=500");
+// window.close();
+
+// Evenements addossés a (window)
+// alert("hello !");
+
+// confirme
+
+btn2.addEventListener("click", (e) => {
+  confirm("Voulez voud vraiment voud tromper ?");
+  e.stopPropagation(e);
+});
+
+btn1.addEventListener("click", () => {
+  let answer = prompt("Entrez votre nom !");
+  // console.log("answer:", answer);
+  questionContain.innerHTML += "<h3> Bravo " + answer + " </h3>";
+});
+
+// Timer, compte à rebours
+// setTimeout(() => {
+//   // logique à executer
+//   questionContain.style.borderRadius = "300px";
+// }, 2000); // "temps en milisecondes "
+
+// let interval = setInterval(() => {
+//   document.body.innerHTML += `
+//           <div classe='box'>
+//             <h2>Nouvelle boite !</h2>
+//           </div>
+//         `;
+// }, 1500);
+
+// document.body.addEventListener("click", (e) => {
+//   e.target.remove();
+//   clearInterval(interval);
+// });
+
+// Location
+// console.log(location.href);
+// console.log(location.host);
+// console.log(location.pathname);
+// console.log(location.search);
+// location.replace("https://www.eurosport.fr/");
+
+// window.onload = () => {
+//   location.href = "https://github.com/";
+// };
+
+// Navigator
+// console.log(navigator.userAgent);
+
+// var options = {
+//   enableHighAccuracy: true,
+//   timeout: 5000,
+//   maximumAge: 0
+// };
+
+// function success(pos) {
+//   var crd = pos.coords;
+
+//   console.log('Votre position actuelle est :');
+//   console.log(`Latitude : ${crd.latitude}`);
+//   console.log(`Longitude : ${crd.longitude}`);
+//   console.log(`La précision est de ${crd.accuracy} mètres.`);
+// }
+
+// function error(err) {
+//   console.warn(`ERREUR (${err.code}): ${err.message}`);
+// }
+
+// navigator.geolocation.getCurrentPosition(success, error, options);
+
+// History
+
+// console.log(window.history);
+// window.history.back();
+
+// history.go(-1);
+
+// ------------------------------------------------------------------------
+
+// setProperty
+
+window.addEventListener("mousemove", (e) => {
+  console.log("e:", e);
+  nav.style.setProperty("--x", e.layerX + "px");
+  nav.style.setProperty("--y", e.layerY + "px");
 });

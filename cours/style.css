@@ -52,7 +52,6 @@ p {
   top: 132px;
   border-radius: 50px;
   transform: translate(-50%, -50%);
-  /* transition: 0.1s ease; */
   z-index: -1;
 }
 
@@ -67,6 +66,28 @@ nav {
   height: 50px;
   top: -50px;
   transition: 0.3s;
+}
+
+nav::after {
+  content: "";
+  height: 150px;
+  width: 150px;
+  background: radial-gradient(
+    circle closest-side,
+    rgb(170, 165, 165, 0.95),
+    transparent
+  );
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: 00.25s;
+  z-index: 20;
+  opacity: 0;
+  left: var(--x);
+  top: var(--y);
+}
+
+nav:hover::after {
+  opacity: 1;
 }
 
 ul {
