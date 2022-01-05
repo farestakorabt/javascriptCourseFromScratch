@@ -16,8 +16,8 @@
 }
 
 h3 {
-  text-align: center;
-  margin-right: 7px 10px 0 0;
+  text-align: right;
+  margin-right: 10px;
   font-style: 2rem;
   grid-area: res;
 }
